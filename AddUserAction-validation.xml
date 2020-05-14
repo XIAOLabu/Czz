@@ -1,0 +1,78 @@
+public void demo1{AddUserAction-validation.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+"-//Apache Struts//XWork Validator 1.0.3//EN"
+"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+
+	<field name="u_user">
+		<field-validator type="requiredstring">
+			<message>账户名不能为空！</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">2</param>
+			<param name="maxLength">10</param>
+			<message>账户名长度必须在${minLength}---${maxLength}之间</message>
+		</field-validator>
+	</field>
+
+	<field name="u_phone">
+		<field-validator type="requiredstring">
+			<message>手机号不能为空！</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">7</param>
+			<param name="maxLength">11</param>
+			<message>手机号长度必须在${minLength}---${maxLength}之间</message>
+		</field-validator>
+	</field>
+
+	<field name="u_pwd">
+		<field-validator type="requiredstring">
+			<message>密码不能为空！</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">2</param>
+			<param name="maxLength">18</param>
+			<message>密码长度必须在${minLength}---${maxLength}之间</message>
+		</field-validator>
+	</field>
+
+	<field name="u_pwd2">
+		<field-validator type="requiredstring">
+			<message>密码不能为空！</message>
+		</field-validator>
+		<field-validator type="fieldexpression">
+			<param name="expression">
+           		<![CDATA[u_pwd == u_pwd2]]>
+			</param>
+			<message>两次密码必须要一致</message>
+		</field-validator>
+	</field>
+
+	<field name="u_cnb">
+		<field-validator type="requiredstring">
+			<message>车牌号为必填项，不能为空。</message>
+		</field-validator>
+	</field>
+
+	<field name="u_pnb">
+		<field-validator type="requiredstring">
+			<message>车位号为必填项，不能为空。</message>
+		</field-validator>
+	</field>
+
+	<field name="u_datetime">
+		<field-validator type="required" short-circuit="true">
+			<message>日期为必填项，不能为空。</message>
+		</field-validator>
+		<field-validator type="date">
+			<param name="min">2019-12-31</param>
+			<param name="max">2039-01-01</param>
+			<message>日期不在有效期内，日期有效期为：${min}到${max}</message>
+		</field-validator>
+	</field>
+
+</validators>
